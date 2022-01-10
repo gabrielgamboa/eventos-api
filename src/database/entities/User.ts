@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { Ticket } from "./Ticket";
 
 @Entity("users")
 export class User {
@@ -19,4 +20,8 @@ export class User {
 
     @Column()
     phone: string;
+
+    @OneToMany(type => Ticket, ticket => ticket.user)
+    @JoinColumn()
+    tickets: any;
 }
