@@ -7,8 +7,6 @@ import { AppError } from "../errors/AppError";
 
 interface ITokenPayload {
     id: number;
-    iat: number;
-    exp: number;
 }
 
 export async function ensureAuthenticated (request: Request, response: Response, next: NextFunction) {
@@ -21,7 +19,6 @@ export async function ensureAuthenticated (request: Request, response: Response,
     const [, token] = authHeader.split(" ");
 
     try {
-        //pego por desestruturação o sub, porém nomeando-o de "user_id".
         const { id: user_id } = verify(token, "d5c6d7e0392032715f66cbd14e085594") as ITokenPayload;
 
         const usersRepository = new UsersRepository();
