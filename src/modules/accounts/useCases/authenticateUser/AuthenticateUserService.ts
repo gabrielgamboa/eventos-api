@@ -4,29 +4,28 @@ import { sign } from "jsonwebtoken";
 
 import { IUsersRepository } from "../../../../database/repositories/IUsersRepository";
 import { AppError } from "../../../../shared/errors/AppError";
+import { IOrganizersRepository } from "../../../../database/repositories/IOrganizersRepository";
 
 interface IRequest {
     email: string;
     password: string;
-}
-
-interface IResponse {
-    user: {
-        name: string;
-        email: string;
-    };
-    token: string;
+    type: string;
 }
 
 @injectable()
 export class AuthenticateUserService {
     constructor(
         @inject("UsersRepository")
-        private usersRepository: IUsersRepository
+        private usersRepository: IUsersRepository,
+
+        @inject("OrganizersRepository")
+        private organizersRepository: IOrganizersRepository
     ) { }
 
-    async execute({ email, password }: IRequest): Promise<IResponse> {
-        const user = await this.usersRepository.findByEmail(email);
+    async execute({ email, password, type }: IRequest): Promise<string> {
+        const repository = type === "USER" ? this.usersRepository : this.organizersRepository;
+
+        const user = await repository.findByEmail(email);
 
         if (!user)
             throw new AppError("E-mail or password is incorrect!", 401);
@@ -36,18 +35,15 @@ export class AuthenticateUserService {
         if (!passwordMatch)
             throw new AppError("E-mail or password is incorrect!", 401);
 
-            const token = sign({ id: user.id }, "d5c6d7e0392032715f66cbd14e085594", {
-                expiresIn: "7d"
-            });
-    
-            const tokenReturn: IResponse = {
-                user: {
-                    name: user.name,
-                    email: user.email
-                },
-                token,
-            }
-    
-            return tokenReturn;
+        const token = sign({ id: user.id, name: user.name, email: user.email, type }, "d5c6d7e0392032715f66cbd14e085594", {
+            expiresIn: "7d"
+        });
+
+        return token;
+
+    }
+
+    private async generateToken(): Promise<void> {
+
     }
 }

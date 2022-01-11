@@ -23,5 +23,5 @@ export class User {
 
     @OneToMany(type => Ticket, ticket => ticket.user)
     @JoinColumn()
-    tickets: any;
+    tickets: Ticket[];
 }

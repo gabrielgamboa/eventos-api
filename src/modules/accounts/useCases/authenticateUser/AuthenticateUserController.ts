@@ -4,10 +4,10 @@ import { AuthenticateUserService } from "./AuthenticateUserService";
 
 export class AuthenticateUserController {
     async handle(req: Request, res: Response): Promise<Response> {
-        const { email, password } = req.body;
+        const { email, password, type } = req.body;
 
         const authenticateUserService = container.resolve(AuthenticateUserService);
-        const token = await authenticateUserService.execute({email, password});
+        const token = await authenticateUserService.execute({email, password, type});
 
         return res.json(token);
     }
