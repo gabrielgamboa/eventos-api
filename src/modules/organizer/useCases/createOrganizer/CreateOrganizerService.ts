@@ -1,3 +1,4 @@
+import { hash } from "bcrypt";
 import { inject, injectable } from "tsyringe";
 import { Organizer } from "../../../../database/entities/Organizer";
 import { IOrganizersRepository } from "../../../../database/repositories/IOrganizersRepository";
@@ -15,10 +16,17 @@ export class CreateOrganizerService {
         const organizerAlreadyExists = await this.organizersRepository.findByEmail(email);
 
         if (organizerAlreadyExists) {
-            throw new AppError("User already exists!");
+            throw new AppError("Organizer already exists!");
         }
 
-        const organizer = await this.organizersRepository.create({ name, email, password });
+        const passwordHash = await hash(password, 8);
+
+        const organizer = await this.organizersRepository.create({
+            name, 
+            email, 
+            password: passwordHash 
+        });
+        
         return organizer;
     }
 }
