@@ -22,6 +22,5 @@ export class User {
     phone: string;
 
     @OneToMany(type => Ticket, ticket => ticket.user)
-    @JoinColumn()
     tickets: Ticket[];
 }

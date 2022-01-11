@@ -15,10 +15,11 @@ export class Ticket {
     price: number;
 
     @ManyToOne(type => Event, event => event.tickets)
-    @JoinColumn()
+    @JoinColumn({ name: "user_id" })
     event: Event;
 
     @ManyToOne(type => User, user => user.tickets)
+    @JoinColumn({ name: "event_id" })
     user: User;
 
     @Column()
