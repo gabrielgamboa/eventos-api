@@ -9,7 +9,7 @@ export class TicketsRepository implements ITicketsRepository {
     constructor() {
         this.repository = getRepository(Ticket);
     }
-
+    
     async create({ price, user_id, event_id }: ICreateTicketDTO): Promise<Ticket> {
         const ticket = this.repository.create({
             price,
@@ -21,6 +21,10 @@ export class TicketsRepository implements ITicketsRepository {
         await this.repository.save(ticket);
 
         return ticket;
+    }
+
+    async list(user_id: number): Promise<Ticket[]> {
+        return await this.repository.find({ where: { user_id }});
     }
 
 }
