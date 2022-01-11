@@ -13,6 +13,9 @@ export class Event {
     description?: string;
 
     @Column()
+    date: Date;
+
+    @Column()
     street: string;
 
     @Column()
@@ -25,6 +28,9 @@ export class Event {
     state: string;
 
     @Column()
+    ticket_price: number;
+
+    @Column()
     tickets_available: number;
 
     @OneToMany(type => Ticket, ticket => ticket.event)
@@ -32,13 +38,9 @@ export class Event {
     tickets?: Ticket[];
 
     @Column()
-    event_type_id: string;
+    event_type_id: number;
 
     @Column()
     organizer_id: number;
-
-    @Column()
-    date: Date;
-
 
 }

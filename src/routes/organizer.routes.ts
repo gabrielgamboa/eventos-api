@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { CreateOrganizerController } from "../modules/organizer/useCases/CreateOrganizerController";
+import { CreateOrganizerController } from "../modules/organizer/useCases/createOrganizer/CreateOrganizerController";
 
 const organizerRoutes = Router();
 

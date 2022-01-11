@@ -37,7 +37,7 @@ export class AuthenticateUserService {
             throw new AppError("E-mail or password is incorrect!", 401);
 
             const token = sign({ id: user.id }, "d5c6d7e0392032715f66cbd14e085594", {
-                expiresIn: "1d"
+                expiresIn: "7d"
             });
     
             const tokenReturn: IResponse = {

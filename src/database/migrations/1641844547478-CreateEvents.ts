@@ -40,6 +40,14 @@ export class CreateEvents1641844547478 implements MigrationInterface {
                         type: "varchar",
                     },
                     {
+                        name: "date",
+                        type: "timestamp",
+                    },
+                    {
+                        name: "ticket_price",
+                        type: "numeric"
+                    },
+                    {
                         name: "tickets_available",
                         type: "integer",
                     },

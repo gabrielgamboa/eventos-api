@@ -4,6 +4,8 @@ import { OrganizersRepository } from "../database/repositories/implementations/O
 import { IOrganizersRepository } from "../database/repositories/IOrganizersRepository";
 import { UsersRepository } from "../database/repositories/implementations/UsersRepository";
 import { IUsersRepository } from "../database/repositories/IUsersRepository";
+import { EventsRepository } from "../database/repositories/implementations/EventsRepository";
+import { IEventsRepository } from "../database/repositories/IEventsRepository";
 
 container.registerSingleton<IUsersRepository>(
     "UsersRepository",
@@ -13,4 +15,9 @@ container.registerSingleton<IUsersRepository>(
 container.registerSingleton<IOrganizersRepository>(
     "OrganizersRepository",
     OrganizersRepository
+);
+
+container.registerSingleton<IEventsRepository>(
+    "EventsRepository",
+    EventsRepository
 );
