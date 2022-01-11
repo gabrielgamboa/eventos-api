@@ -53,11 +53,14 @@ export class CreateEvents1641844547478 implements MigrationInterface {
                     },
                     {
                         name: "organizer_id",
-                        type: "integer"
+                        type: "integer",
+                        isNullable: true
+                        
                     },
                     {
                         name: "event_type_id",
-                        type: "integer"
+                        type: "integer",
+                        isNullable: true
                     },
 
                 ],

@@ -25,11 +25,13 @@ export class CreateTickets1641864742449 implements MigrationInterface {
                     },
                     {
                         name: "user_id",
-                        type: "integer"
+                        type: "integer",
+                        isNullable: true
                     },
                     {
                         name: "event_id",
-                        type: "integer"
+                        type: "integer",
+                        isNullable: true
                     }
                 ],
                 foreignKeys: [
