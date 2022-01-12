@@ -18,7 +18,7 @@ export async function ensureOrganizer (request: Request, response: Response, nex
     const [, token] = authHeader.split(" ");
 
     try {
-        const { id: organizer_id } = verify(token, "d5c6d7e0392032715f66cbd14e085594") as ITokenPayload;
+        const { id: organizer_id } = verify(token, process.env.SECRET_KEY) as ITokenPayload;
 
         const organizersRepository = new OrganizersRepository();
         const organizer = await organizersRepository.findById(organizer_id);

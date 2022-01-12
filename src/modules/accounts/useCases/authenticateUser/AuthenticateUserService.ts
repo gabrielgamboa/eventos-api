@@ -35,7 +35,7 @@ export class AuthenticateUserService {
         if (!passwordMatch)
             throw new AppError("E-mail or password is incorrect!", 401);
 
-        const token = sign({ id: user.id, name: user.name, email: user.email, type }, "d5c6d7e0392032715f66cbd14e085594", {
+        const token = sign({ id: user.id, name: user.name, email: user.email, type }, process.env.SECRET_KEY, {
             expiresIn: "7d"
         });
 
