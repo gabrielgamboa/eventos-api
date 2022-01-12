@@ -61,4 +61,8 @@ export class EventsRepository implements IEventsRepository {
         return event;
     }
 
+    async updateEvent(event: Event): Promise<Event> {
+        return await this.repository.save(event);
+    }
+
 }

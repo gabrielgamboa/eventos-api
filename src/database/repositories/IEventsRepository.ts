@@ -6,4 +6,5 @@ export interface IEventsRepository {
     list(street?: string, number?: string, city?: string, state?: string ): Promise<Event[]>;
     findById(id: number): Promise<Event>;
     removeOneTicketAvailable(id: number): Promise<Event>;
+    updateEvent(event: Event): Promise<Event>;
 }
