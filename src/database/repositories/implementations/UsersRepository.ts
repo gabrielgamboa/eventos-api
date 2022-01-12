@@ -30,4 +30,8 @@ export class UsersRepository implements IUsersRepository {
         return await this.repository.findOne(id);
     }
 
+    async updateUser(user: User): Promise<User> {
+        return await this.repository.save(user);
+    }
+
 }
