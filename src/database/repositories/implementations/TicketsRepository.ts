@@ -23,8 +23,12 @@ export class TicketsRepository implements ITicketsRepository {
         return ticket;
     }
 
-    async list(user_id: number): Promise<Ticket[]> {
-        return await this.repository.find({ where: { user_id }});
+    async list(id: number): Promise<Ticket[]> {
+        return await this.repository.createQueryBuilder("t")
+            .select(["t.id", "t.purchase_date", "t.price", "t.user_id"])
+            .innerJoinAndSelect("t.event", "e")
+            .where("t.user_id = :id", { id })
+            .getMany();
     }
 
 }
