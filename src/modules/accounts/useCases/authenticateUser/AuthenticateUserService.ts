@@ -43,7 +43,4 @@ export class AuthenticateUserService {
 
     }
 
-    private async generateToken(): Promise<void> {
-
-    }
 }
