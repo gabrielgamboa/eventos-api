@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --inspect --ignore-watch node_modules --transpile-only src/index.ts",
+    "start": "ts-node-dev --inspect --ignore-watch node_modules --transpile-only src/index.ts",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
     "tsc": "tsc",
     "seed:event_type": "ts-node-dev src/database/seeds/eventType.ts"
