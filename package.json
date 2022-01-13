@@ -4,9 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/index.ts",
     "start": "node dist/index.js",
     "build": "tsc",
-    "postinstall": "npm run build"
+    "postinstall": "npm run build",
+    "seed:event_types": "ts-node-dev src/database/seeds/eventType.ts"    
   },
   "dependencies": {
     "bcrypt": "^5.0.1",

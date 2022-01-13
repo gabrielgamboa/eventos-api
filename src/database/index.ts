@@ -1,6 +1,6 @@
 import { Connection, createConnection, getConnectionOptions } from "typeorm";
 
-export default async(host = "ec2-3-225-41-234.compute-1.amazonaws.com"): Promise<Connection> => {
+export default async(host = "localhost"): Promise<Connection> => {
     const defaultOptions = await getConnectionOptions();
 
     return createConnection((
