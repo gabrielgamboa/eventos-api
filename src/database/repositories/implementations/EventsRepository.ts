@@ -50,7 +50,18 @@ export class EventsRepository implements IEventsRepository {
     }
 
     async findById(id: number): Promise<Event> {
-        return await this.repository.findOne(id);
+        // return await this.repository.findOne(id);
+
+        // return await this.repository.createQueryBuilder("t")
+        //     .select(["t.id", "t.purchase_date", "t.price", "t.user_id"])
+        //     .innerJoinAndSelect("t.event", "e")
+        //     .where("t.user_id = :id", { id })
+        //     .getMany();
+
+        return await this.repository.createQueryBuilder("e")
+            .innerJoinAndSelect("e.organizer", "o")
+            .where("e.id = :id", { id })
+            .getOne();
     }
 
     async removeOneTicketAvailable(id: number): Promise<Event> {
