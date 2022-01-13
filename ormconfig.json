@@ -1,10 +1,16 @@
 {
     "type": "postgres",
-    "host": "localhost",
+    "host": "ec2-3-225-41-234.compute-1.amazonaws.com",
+    "url": "postgres://hzltgecpepjkef:baba425142e75ae52b8e269700ef78dba3730bef41a8c2b72bcdc663df1101ee@ec2-3-225-41-234.compute-1.amazonaws.com:5432/d8q6u8to6afqkf",
     "port": 5432,
-    "username": "postgres",
-    "password": "postgres",
-    "database": "eventlabs",
+    "username": "hzltgecpepjkef",
+    "password": "baba425142e75ae52b8e269700ef78dba3730bef41a8c2b72bcdc663df1101ee",
+    "database": "d8q6u8to6afqkf",
+    "extra": {
+        "ssl": {
+            "rejectUnauthorized": false
+        }
+    },
     "migrations": [
         "./src/database/migrations/*.ts"
     ],
@@ -14,4 +20,4 @@
     "cli": {
         "migrationsDir": "./src/database/migrations"
     }
- }
+}
