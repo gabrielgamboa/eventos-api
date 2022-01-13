@@ -6,12 +6,13 @@ import cors from "cors";
 import "express-async-errors";
 import "reflect-metadata";
 
-import "./database";
+import createConnection from "./database";
 import "./shared/container";
 
 import { routes } from "./routes";
 import { AppError } from "./shared/errors/AppError";
 
+createConnection();
 const app = express();
 
 app.use(express.json());
