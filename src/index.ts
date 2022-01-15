@@ -11,6 +11,7 @@ import "./shared/container";
 
 import { routes } from "./routes";
 import { AppError } from "./shared/errors/AppError";
+import { ValidationError } from "./shared/errors/ValidationError";
 
 const app = express();
 
@@ -21,6 +22,10 @@ app.use(routes);
 app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
     if (err instanceof AppError) {
         return response.status(err.statusCode).json({ message: err.message });
+    }
+
+    if (err instanceof ValidationError) {
+        return response.status(err.statusCode).json(err);
     }
 
     return response.status(500).json({
