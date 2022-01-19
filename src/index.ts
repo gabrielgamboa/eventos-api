@@ -25,7 +25,10 @@ app.use((err: Error, request: Request, response: Response, next: NextFunction) =
     }
 
     if (err instanceof ValidationError) {
-        return response.status(err.statusCode).json(err);
+        return response.status(err.statusCode).json({
+            message: err.message,
+            errors: err.errors
+        });
     }
 
     return response.status(500).json({
