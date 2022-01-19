@@ -1,7 +1,7 @@
-import { createOrganizer } from "./createOrganizerSchema.validator";
+import { createOrganizerSchema } from "./createOrganizerSchema.validator";
 import { createUserSchema } from "./createUserSchema.validator";
 
 export {
     createUserSchema,
-    createOrganizer
+    createOrganizerSchema
 }
