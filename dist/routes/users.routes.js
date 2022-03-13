@@ -1,0 +1,18 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.usersRoutes = void 0;
+const express_1 = require("express");
+const CreateUserController_1 = require("../modules/accounts/useCases/createUser/CreateUserController");
+const UpdateUserController_1 = require("../modules/accounts/useCases/updateUser/UpdateUserController");
+const ListTicketsController_1 = require("../modules/event/useCases/listTickets/ListTicketsController");
+const createValidationMiddleware_1 = require("../shared/middlewares/createValidationMiddleware");
+const ensureAuthenticated_1 = require("../shared/middlewares/ensureAuthenticated");
+const validators_1 = require("../shared/validators");
+const usersRoutes = (0, express_1.Router)();
+exports.usersRoutes = usersRoutes;
+const createUserController = new CreateUserController_1.CreateUserController();
+const listTicketsController = new ListTicketsController_1.ListTicketsController();
+const updateUserController = new UpdateUserController_1.UpdateUserController();
+usersRoutes.post("/", (0, createValidationMiddleware_1.createValidation)(validators_1.createUserSchema), createUserController.handle);
+usersRoutes.get("/tickets", ensureAuthenticated_1.ensureAuthenticated, listTicketsController.handle);
+usersRoutes.patch("/", ensureAuthenticated_1.ensureAuthenticated, updateUserController.handle);

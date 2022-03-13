@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ticketsRoutes = void 0;
+const express_1 = require("express");
+const CreateTicketController_1 = require("../modules/event/useCases/createTicket/CreateTicketController");
+const ensureAuthenticated_1 = require("../shared/middlewares/ensureAuthenticated");
+const ticketsRoutes = (0, express_1.Router)();
+exports.ticketsRoutes = ticketsRoutes;
+const createTicketController = new CreateTicketController_1.CreateTicketController();
+ticketsRoutes.post("/", ensureAuthenticated_1.ensureAuthenticated, createTicketController.handle);

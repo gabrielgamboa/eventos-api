@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const tsyringe_1 = require("tsyringe");
+const OrganizersRepository_1 = require("../database/repositories/implementations/OrganizersRepository");
+const UsersRepository_1 = require("../database/repositories/implementations/UsersRepository");
+const EventsRepository_1 = require("../database/repositories/implementations/EventsRepository");
+const TicketsRepository_1 = require("../database/repositories/implementations/TicketsRepository");
+tsyringe_1.container.registerSingleton("UsersRepository", UsersRepository_1.UsersRepository);
+tsyringe_1.container.registerSingleton("OrganizersRepository", OrganizersRepository_1.OrganizersRepository);
+tsyringe_1.container.registerSingleton("EventsRepository", EventsRepository_1.EventsRepository);
+tsyringe_1.container.registerSingleton("TicketsRepository", TicketsRepository_1.TicketsRepository);
